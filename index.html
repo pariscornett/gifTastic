@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>gifTastic</title>
+    <!--Link jQuery-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <!--Link External JS file-->
+    <script src = "assets/gif.js"></script>
+</head>
+<body>
+    <!--Makes a div for buttons to be stored in-->
+    <div id = "dump-buttons">
+      <!--  <button class = "tv-button" data-name = "The Eric Andre Show">The Eric Andre Show</button> -->
+    </div>
+    <br>
+    <!--Makes a form to input new tv shows-->
+    <form id = "tv-form">
+        <label for = "tv-input">Add a TV Show</label>
+        <input type = "text" id = "tv-input">
+    </form>
+    <br>
+    <!--Button to add new tv show to array-->
+    <input id = "add-tv" type = "submit" value = "Add Show">
+    <!--Gifs will go here!-->
+    <div id = "gif-dump">
+
+    </div>
+</body>
+</html>
