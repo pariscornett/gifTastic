@@ -1,5 +1,5 @@
 //creates an array of television shows as my topic
-var tvShows = ["The Eric Andre Show", "I Think You Should Leave", "Nathan for You", "Game of Thrones", "Pen15"];
+var tvShows = ["The Eric Andre Show", "Documentary Now", "Nathan for You", "Pen15"];
 
 //function to display shows from the array as buttons
 function renderButtons() {
@@ -34,53 +34,56 @@ $("#add-tv").on("click", function(event){
 })
 
 //function to make buttons display gifs 
-$("button").on("click", function generate (){
-    event.preventDefault();
-    //empties out the previous button's gifs
-    $("#gif-dump").empty();
-    //this will grab the value of data attribute "data-name" and store it in the variable "show"
-    var show =  $(this).attr("data-name");
-    //this makes a query url that inserts the value in order to get a specific gif to eventually display. (q sets the topic and limit sets the limit on results to display)
-    var queryUrl = "https://api.giphy.com/v1/gifs/search?q=" + show + "&api_key=9hiva0MxBroQdI1A23eUS7o6xT2Inyty&limit=10";
-    //make an AJAX request
-    $.ajax({
-        url: queryUrl,
-        method: "GET"
-    })
-        //then we construct a "promise" to return data after request has been completed
-        .then(function(response) {
-            //logging the response so we can look through the returned object and find what information we want to display
-            console.log(response);
-            //saving the data of the object to a variable purely so that we don't have to use dot notation every time we want to call upon this section of the object
-            var results = response.data;
-            //creating a loop to return several gifs from the object
-            for (var i = 0; i < results.length; i++) {
-                //dynamically creating a div and storing it in a variable 
-                var tvShowDiv = $("<div>");
-                //dynamically creating a p tag so we can display the gif's rawting
-                var rating = $("<p>").text("Rating: " + results[i].rating);
-                //dynamically creating an image tag to append the gif to
-                var tvShowImage = $("<img>");
-                //give each image a class of "gif"
-                tvShowImage.attr("class", "gif");
-                //giving the image tag a src attribute and the actual source (traverse the object in the console to find the image location)
-                tvShowImage.attr("src", results[i].images.fixed_height_still.url);
-                //giving a data attribute "still" and assigning the still image to it
-                tvShowImage.attr("data-still", results[i].images.fixed_height_still.url);
-                //giving a data attribute "animate" and assigning the moving gif to it
-                tvShowImage.attr("data-animate",results[i].images.fixed_height.url)
-                //giving a data attribute to determine the state of the gif (still or animated)
-                tvShowImage.attr("data-state", "still")
-                //now that we've created elements dynamically and given them their attributes, we will append them to the div we created
-                tvShowDiv.append(rating);
-                tvShowDiv.append(tvShowImage);
-                //now, to show in the DOM, we prepend the div to the id we hard coded in our html file
-                $("#gif-dump").prepend(tvShowDiv);
-        
-            }
+function generate() {
+    //create a click event 
+    $("button").on("click", function (){
+        //empties out the previous button's gifs
+        $("#gif-dump").empty();
+        //this will grab the value of data attribute "data-name" and store it in the variable "show"
+        var show =  $(this).attr("data-name");
+        //this makes a query url that inserts the value in order to get a specific gif to eventually display. (q sets the topic and limit sets the limit on results to display)
+        var queryUrl = "https://api.giphy.com/v1/gifs/search?q=" + show + "&api_key=9hiva0MxBroQdI1A23eUS7o6xT2Inyty&limit=10";
+        //make an AJAX request
+        $.ajax({
+            url: queryUrl,
+            method: "GET"
         })
+            //then we construct a "promise" to return data after request has been completed
+            .then(function(response) {
+                //logging the response so we can look through the returned object and find what information we want to display
+                console.log(response);
+                //saving the data of the object to a variable purely so that we don't have to use dot notation every time we want to call upon this section of the object
+                var results = response.data;
+                //creating a loop to return several gifs from the object
+                for (var i = 0; i < results.length; i++) {
+                    //dynamically creating a div and storing it in a variable 
+                    var tvShowDiv = $("<div>");
+                    //dynamically creating a p tag so we can display the gif's rawting
+                    var rating = $("<p>").text("Rating: " + results[i].rating);
+                    //dynamically creating an image tag to append the gif to
+                    var tvShowImage = $("<img>");
+                    //give each image a class of "gif"
+                    tvShowImage.attr("class", "gif");
+                    //giving the image tag a src attribute and the actual source (traverse the object in the console to find the image location)
+                    tvShowImage.attr("src", results[i].images.fixed_height_still.url);
+                    //giving a data attribute "still" and assigning the still image to it
+                    tvShowImage.attr("data-still", results[i].images.fixed_height_still.url);
+                    //giving a data attribute "animate" and assigning the moving gif to it
+                    tvShowImage.attr("data-animate",results[i].images.fixed_height.url)
+                    //giving a data attribute to determine the state of the gif (still or animated)
+                    tvShowImage.attr("data-state", "still")
+                    //now that we've created elements dynamically and given them their attributes, we will append them to the div we created
+                    tvShowDiv.append(rating);
+                    tvShowDiv.append(tvShowImage);
+                    //now, to show in the DOM, we prepend the div to the id we hard coded in our html file
+                    $("#gif-dump").prepend(tvShowDiv);
+            
+                }
+            })
+    
+    })
+}
 
-})
 
 //make gifs pause and start when clicked
 $(document).on("click", ".gif", function(){
@@ -96,7 +99,7 @@ $(document).on("click", ".gif", function(){
     }
 });
 
-//adding a listener for any element with tv-button id
-$(document).on("click", "#tv-button", generate);
-renderButtons();
+//adding a listener to run function generate whenever something is clicked upon
+$(document).on("click", generate);
+
 
