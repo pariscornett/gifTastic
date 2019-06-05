@@ -1,5 +1,5 @@
 //creates an array of television shows as my topic
-var tvShows = ["The Eric Andre Show", "I Think You Should Leave", "Nathan for You", "Game of Thrones", "Here and Now", "Pen15"];
+var tvShows = ["The Eric Andre Show", "I Think You Should Leave", "Nathan for You", "Game of Thrones", "Pen15"];
 
 //function to display shows from the array as buttons
 function renderButtons() {
@@ -34,7 +34,8 @@ $("#add-tv").on("click", function(event){
 })
 
 //function to make buttons display gifs 
-$("button").on("click", function (){
+$("button").on("click", function generate (){
+    event.preventDefault();
     //empties out the previous button's gifs
     $("#gif-dump").empty();
     //this will grab the value of data attribute "data-name" and store it in the variable "show"
@@ -60,8 +61,16 @@ $("button").on("click", function (){
                 var rating = $("<p>").text("Rating: " + results[i].rating);
                 //dynamically creating an image tag to append the gif to
                 var tvShowImage = $("<img>");
+                //give each image a class of "gif"
+                tvShowImage.attr("class", "gif");
                 //giving the image tag a src attribute and the actual source (traverse the object in the console to find the image location)
-                tvShowImage.attr("src", results[i].images.fixed_height.url);
+                tvShowImage.attr("src", results[i].images.fixed_height_still.url);
+                //giving a data attribute "still" and assigning the still image to it
+                tvShowImage.attr("data-still", results[i].images.fixed_height_still.url);
+                //giving a data attribute "animate" and assigning the moving gif to it
+                tvShowImage.attr("data-animate",results[i].images.fixed_height.url)
+                //giving a data attribute to determine the state of the gif (still or animated)
+                tvShowImage.attr("data-state", "still")
                 //now that we've created elements dynamically and given them their attributes, we will append them to the div we created
                 tvShowDiv.append(rating);
                 tvShowDiv.append(tvShowImage);
@@ -72,4 +81,22 @@ $("button").on("click", function (){
         })
 
 })
+
+//make gifs pause and start when clicked
+$(document).on("click", ".gif", function(){
+    //detects the state of gifs by isolating the data attribute and storing it to variable "state"
+    var state = $(this).attr("data-state");
+    //set up conditionals for instructions on what to do for each state
+    if (state === "still") {
+        $(this).attr("src", $(this).attr("data-animate"));
+        $(this).attr("data-state", "animate");
+    } else {
+        $(this).attr("src", $(this).attr("data-still"));
+        $(this).attr("data-state", "still");
+    }
+});
+
+//adding a listener for any element with tv-button id
+$(document).on("click", "#tv-button", generate);
+renderButtons();
 
