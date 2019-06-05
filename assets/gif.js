@@ -25,13 +25,13 @@ console.log(tvShows);
 renderButtons();
 
 //function to make the Add Show button work
-// $("#add-tv").on("click", function(event){
-//     event.preventDefault();
-//     //pull the text input by the user
-//     let input = $("#tv-input").val().trim();
-//     //then, we'll add it into our array of television shows
-//     tvShows.push(input);
-//     //now that our array is updated, we'll call the function renderButtons so that we can empty the old array and show our new array
-//     renderButtons();
-// })
+$("#add-tv").on("click", function(event){
+    event.preventDefault();
+    //pull the text input by the user
+    let input = $("#tv-input").val().trim();
+    //then, we'll add it into our array of television shows
+    tvShows.push(input);
+    //now that our array is updated, we'll call the function renderButtons so that we can empty the old array and show our new array
+    renderButtons();
+})
 
