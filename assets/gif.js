@@ -31,6 +31,11 @@ $("#add-tv").on("click", function(event){
     tvShows.push(input);
     //now that our array is updated, we'll call the function renderButtons so that we can empty the old array and show our new array
     renderButtons();
+    //empties input text when you click inside again
+    $("input:text").focus(
+        function(){
+            $(this).val('');
+        });
 })
 
 //function to make buttons display gifs 
