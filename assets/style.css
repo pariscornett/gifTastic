@@ -1,0 +1,14 @@
+body {
+    background-image: url("../assets/images/congruent_pentagon.png");
+    font-family: 'Raleway', sans-serif;
+}
+
+button {
+    background-color:#ae7abf;
+    border-radius: 50px;
+}
+
+button:hover{
+    background-color:#c6b9ef;
+}
+

@@ -36,7 +36,8 @@ $("#add-tv").on("click", function(event){
 //function to make buttons display gifs 
 function generate() {
     //create a click event 
-    $("button").on("click", function (){
+    $("button").on("click", function (event){
+        event.preventDefault();
         //empties out the previous button's gifs
         $("#gif-dump").empty();
         //this will grab the value of data attribute "data-name" and store it in the variable "show"

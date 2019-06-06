@@ -5,26 +5,51 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>gifTastic</title>
-  
+    <!--Google Font-->
+    <link href="https://fonts.googleapis.com/css?family=Raleway&display=swap" rel="stylesheet">
+    <!--Link Reset CSS-->
+    <link rel= "stylesheet" type = "text/css" href = "assets/reset.css">
+    <!--Link Bootstrap-->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <!--Link Style CSS-->
+    <link rel = "stylesheet" type = "text/css" href = "assets/style.css">
 </head>
 <body>
-    <!--Makes a div for buttons to be stored in-->
-    <div id = "dump-buttons">
-      <!--  <button class = "tv-button" data-name = "The Eric Andre Show">The Eric Andre Show</button> -->
+  <div class = "container">
+    <div class = "row">
+      <div class = "col-md-12">
+          <div id = "dump-buttons">
+            <!--buttons go here-->
+          </div>
+      </div>
     </div>
-    <br>
-    <!--Makes a form to input new tv shows-->
-    <form id = "tv-form">
-        <label for = "tv-input">Add a TV Show</label>
-        <input type = "text" id = "tv-input">
-    </form>
-    <br>
-    <!--Button to add new tv show to array-->
-    <input id = "add-tv" type = "submit" value = "Add Show">
-    <!--Gifs will go here!-->
-    <div id = "gif-dump">
+    <div class = "row">
+     
+      <div class = "col-md-4">
+         <!--Makes a form to input new tv shows-->
+         <form id = "tv-form">
+            <label for = "tv-input">Add a TV Show</label>
+            <input type = "text" id = "tv-input">
+            <br>
+            <!--Button to add new tv show to array-->
+            <input id = "add-tv" type = "submit" value = "Add Show">
+        </form>
+      </div>
+    </div>
+    <div class = "row">
+      <div class = "col-md-6">
+        <div id = "gif-dump">
+              <!--Gifs will go here!-->
+        </div>
+    </div>
+  </div>
 
-    </div>
+    
+   
+  <!--Link Bootstrap-->
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
   <!--Link jQuery-->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <!--Link External JS file-->
