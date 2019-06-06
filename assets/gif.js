@@ -13,7 +13,6 @@ function renderButtons() {
         newButton.addClass("tv-button");
         //in addition to a class, we are giving the button a data attribute called data-name with the value of data-name being the name of the tv show(i.e. the index of the array).THIS IS STILL META-DATA AND ISN'T SHOWN IN THE DOM 
         newButton.attr("data-name", tvShows[i]);
-        console.log(tvShows[i]);
         //this gives the new button text, which could be anything, but here it is the value of the string in the array tvShows
         newButton.text(tvShows[i]);
         //this directs the button(s) back to the div we previously emptied
@@ -56,8 +55,6 @@ function generate() {
         })
             //then we construct a "promise" to return data after request has been completed
             .then(function(response) {
-                //logging the response so we can look through the returned object and find what information we want to display
-                console.log(response);
                 //saving the data of the object to a variable purely so that we don't have to use dot notation every time we want to call upon this section of the object
                 var results = response.data;
                 //creating a loop to return several gifs from the object
